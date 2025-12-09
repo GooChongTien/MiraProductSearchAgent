@@ -1,0 +1,16 @@
+{
+  "name": "mira-product-search-agent",
+  "version": "1.0.0",
+  "description": "AI-powered insurance product research assistant",
+  "type": "module",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "openai": "^4.20.1",
+    "helmet": "^7.1.0"
+  }
+}

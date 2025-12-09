@@ -12,7 +12,8 @@
       "Bash(taskkill //F //PID 33384)",
       "Bash(taskkill:*)",
       "Bash(taskkill //F //PID 14648)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git branch:*)"
     ]
   }
 }
