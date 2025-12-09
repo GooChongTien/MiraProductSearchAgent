@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import {
-  Home, Plane, Shield, Flag, Heart, Activity,
-  Car, AlertTriangle, Stethoscope, BriefcaseMedical,
-  Globe
+  Plane, Heart, Activity,
+  Car, AlertTriangle, BriefcaseMedical
 } from 'lucide-react';
 import { AppState, AppData } from './types';
 import { generateReport } from './api';

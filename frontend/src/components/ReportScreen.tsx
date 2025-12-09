@@ -13,7 +13,7 @@ interface ReportScreenProps {
 }
 
 export default function ReportScreen({ products, insuranceType, country, onStartOver }: ReportScreenProps) {
-  const [showActions, setShowActions] = useState(false);
+  const [_showActions, setShowActions] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowActions(true), 500);

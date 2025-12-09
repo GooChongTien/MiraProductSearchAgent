@@ -22,14 +22,14 @@ interface QuestionScreenProps {
 }
 
 export default function QuestionScreen({
-  question,
+  question: _question,
   placeholder,
   examples,
   onSubmit,
   title,
   step = 1,
   totalSteps = 2,
-  layout = 'grid',
+  layout: _layout = 'grid',
 }: QuestionScreenProps) {
   const [answer, setAnswer] = useState('');
 
