@@ -37,11 +37,11 @@ function App() {
     // Generate report
     const result = await generateReport(data.insuranceType, answer);
 
-    if (result.ok && result.html) {
+    if (result.ok && result.products && result.products.length > 0) {
       setData((prev) => ({
         ...prev,
-        reportHTML: result.html!,
-        products: result.products || []
+        reportHTML: result.html || '',
+        products: result.products
       }));
       setState('report');
     } else {
