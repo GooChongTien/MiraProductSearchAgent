@@ -1,6 +1,7 @@
 import { ReportResponse } from '../types';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Type assertion for Vercel build compatibility
+const API_URL = (import.meta as any).env?.VITE_API_URL || '';
 
 export async function generateReport(
   insuranceType: string,
