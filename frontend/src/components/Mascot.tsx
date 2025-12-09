@@ -62,12 +62,23 @@ export default function Mascot({ className = "w-48 h-48", expression = 'happy' }
                 <circle cx="55" cy="110" r="6" fill="#fca5a5" opacity="0.6" />
                 <circle cx="145" cy="110" r="6" fill="#fca5a5" opacity="0.6" />
 
-                {/* Eyes (Glowing Orange/Yellow) */}
+                {/* Eyes (Glowing Bright - Blinking Effect) */}
                 {expression === 'happy' && (
-                    <g fill="#fbbf24" filter="url(#softGlow)">
-                        {/* Arched Happy Eyes */}
-                        <path d="M75 95 Q 85 85 95 95" stroke="#fbbf24" strokeWidth="4" strokeLinecap="round" fill="none" />
-                        <path d="M105 95 Q 115 85 125 95" stroke="#fbbf24" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <g filter="url(#softGlow)">
+                        {/* Bright Glowing Eyes with Blink Animation */}
+                        <ellipse cx="85" cy="92" rx="8" ry="7" fill="#fbbf24">
+                            <animate attributeName="ry" values="7;1;7" dur="4s" repeatCount="indefinite" keyTimes="0;0.05;0.1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" />
+                        </ellipse>
+                        <ellipse cx="115" cy="92" rx="8" ry="7" fill="#fbbf24">
+                            <animate attributeName="ry" values="7;1;7" dur="4s" repeatCount="indefinite" keyTimes="0;0.05;0.1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" />
+                        </ellipse>
+                        {/* Inner bright glow (pupils) */}
+                        <circle cx="85" cy="92" r="3" fill="white" opacity="0.9">
+                            <animate attributeName="opacity" values="0.9;0.5;0.9" dur="2s" repeatCount="indefinite" />
+                        </circle>
+                        <circle cx="115" cy="92" r="3" fill="white" opacity="0.9">
+                            <animate attributeName="opacity" values="0.9;0.5;0.9" dur="2s" repeatCount="indefinite" />
+                        </circle>
                     </g>
                 )}
 
