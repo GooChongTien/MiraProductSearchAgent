@@ -41,7 +41,7 @@ function App() {
       setData((prev) => ({
         ...prev,
         reportHTML: result.html || '',
-        products: result.products
+        products: result.products || []
       }));
       setState('report');
     } else {
