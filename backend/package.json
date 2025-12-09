@@ -1,0 +1,21 @@
+{
+  "name": "mira-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Mira Insurance Product Research",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "keywords": ["insurance", "research", "api", "openai"],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "openai": "^4.20.1",
+    "helmet": "^7.1.0"
+  }
+}
