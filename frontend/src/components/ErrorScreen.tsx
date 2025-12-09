@@ -5,7 +5,8 @@ interface ErrorScreenProps {
 
 export default function ErrorScreen({ message, onStartOver }: ErrorScreenProps) {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4"
+      style={{ background: 'linear-gradient(180deg, #FFF5F7 0%, #FFE4E9 30%, #FFD6DE 60%, #FFC9D4 100%)' }}>
       <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 md:p-12">
         <div className="text-center">
           {/* Error icon */}

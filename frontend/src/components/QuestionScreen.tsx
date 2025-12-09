@@ -45,11 +45,12 @@ export default function QuestionScreen({
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 font-sans">
+    <div className="min-h-screen flex items-center justify-center font-sans overflow-hidden relative"
+      style={{ background: 'linear-gradient(180deg, #FFF5F7 0%, #FFE4E9 30%, #FFD6DE 60%, #FFC9D4 100%)' }}>
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="w-full max-w-md h-screen flex flex-col bg-white overflow-hidden relative"
+        className="w-full max-w-md h-screen flex flex-col bg-white overflow-hidden relative shadow-2xl"
       >
         {/* Navigation Header */}
         <div className="px-6 py-4 flex items-center justify-between shrink-0">
@@ -89,8 +90,8 @@ export default function QuestionScreen({
                 onClick={() => handleExampleClick(example.value)}
                 className={`flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-200 hover:scale-[1.02] active:scale-95 border border-transparent hover:border-gray-200 hover:shadow-md ${example.color} aspect-square`}
               >
-                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-2 shadow-sm text-gray-900 overflow-hidden">
-                  {example.icon}
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mb-2 shadow-sm text-gray-900 overflow-hidden">
+                  <div className="scale-150">{example.icon}</div>
                 </div>
                 <span className="font-semibold text-gray-800 text-center leading-tight text-xs">
                   {example.label}

@@ -6,11 +6,12 @@ export default function LoadingScreen() {
 
   return (
 
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 font-sans overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center font-sans overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #FFF5F7 0%, #FFE4E9 30%, #FFD6DE 60%, #FFC9D4 100%)' }}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="w-full max-w-md h-screen flex flex-col relative bg-white"
+        className="w-full max-w-md h-screen flex flex-col relative bg-white shadow-2xl"
       >
         <div className="flex-1 flex flex-col items-center justify-center relative">
 

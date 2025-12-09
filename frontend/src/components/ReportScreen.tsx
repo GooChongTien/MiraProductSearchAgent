@@ -22,11 +22,12 @@ export default function ReportScreen({ products, insuranceType, country, onStart
 
   return (
 
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 font-sans">
+    <div className="min-h-screen flex items-center justify-center font-sans"
+      style={{ background: 'linear-gradient(180deg, #FFF5F7 0%, #FFE4E9 30%, #FFD6DE 60%, #FFC9D4 100%)' }}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="w-full max-w-md min-h-screen flex flex-col bg-white overflow-hidden relative"
+        className="w-full max-w-md min-h-screen flex flex-col bg-white overflow-hidden relative shadow-2xl"
       >
         {/* Header */}
         <div className="px-6 py-4 flex items-center border-b border-gray-100 sticky top-0 bg-white z-20">
