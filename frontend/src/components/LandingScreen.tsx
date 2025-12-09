@@ -1,21 +1,82 @@
 import { motion } from 'framer-motion';
 import Mascot from './Mascot';
-import { Shield, Home, Heart, Plane, Car, Cross, Search } from 'lucide-react';
+import { Shield, Home, Heart, Plane, Car, Search } from 'lucide-react';
 
 interface LandingScreenProps {
   onStart: () => void;
 }
 
+// 3D Orbiting Icon Component - Each icon orbits in its own tilted plane
+function OrbitingIcon({
+  Icon,
+  color,
+  orbitDuration,
+  orbitTilt,
+  startAngle,
+  radius
+}: {
+  Icon: React.ElementType;
+  color: string;
+  orbitDuration: number;
+  orbitTilt: number;
+  startAngle: number;
+  radius: number;
+}) {
+  return (
+    <div
+      className="absolute inset-0 flex items-center justify-center"
+      style={{
+        perspective: '400px',
+        transformStyle: 'preserve-3d'
+      }}
+    >
+      <motion.div
+        className="absolute"
+        style={{
+          width: radius * 2,
+          height: radius * 2,
+          transformStyle: 'preserve-3d',
+          transform: `rotateX(${orbitTilt}deg) rotateY(${startAngle}deg)`,
+        }}
+        animate={{
+          rotateY: [startAngle, startAngle + 360]
+        }}
+        transition={{
+          duration: orbitDuration,
+          ease: "linear",
+          repeat: Infinity
+        }}
+      >
+        <motion.div
+          className={`absolute w-9 h-9 bg-gradient-to-br ${color} rounded-xl flex items-center justify-center shadow-lg`}
+          style={{
+            left: '50%',
+            top: '50%',
+            marginLeft: '-18px',
+            marginTop: '-18px',
+            transform: `translateZ(${radius}px)`,
+            backfaceVisibility: 'visible',
+          }}
+          // Counter-rotate to keep icon upright
+          animate={{ rotateY: [0, -360] }}
+          transition={{ duration: orbitDuration, ease: "linear", repeat: Infinity }}
+        >
+          <Icon className="w-4 h-4 text-white" />
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
 export default function LandingScreen({ onStart }: LandingScreenProps) {
-  // Insurance icons for orbiting effect
+  // Each icon has unique orbit parameters for true 3D effect
   const orbitIcons = [
-    { Icon: Shield, color: 'from-red-400 to-red-600', delay: 0 },
-    { Icon: Home, color: 'from-rose-400 to-rose-600', delay: 0.5 },
-    { Icon: Heart, color: 'from-pink-400 to-pink-600', delay: 1 },
-    { Icon: Plane, color: 'from-red-300 to-red-500', delay: 1.5 },
-    { Icon: Car, color: 'from-rose-300 to-rose-500', delay: 2 },
-    { Icon: Cross, color: 'from-red-400 to-pink-500', delay: 2.5 },
-    { Icon: Search, color: 'from-pink-300 to-red-400', delay: 3 },
+    { Icon: Shield, color: 'from-red-400 to-red-600', duration: 8, tilt: 70, startAngle: 0, radius: 100 },
+    { Icon: Home, color: 'from-rose-400 to-rose-600', duration: 10, tilt: 60, startAngle: 60, radius: 95 },
+    { Icon: Heart, color: 'from-pink-400 to-pink-600', duration: 12, tilt: 80, startAngle: 120, radius: 105 },
+    { Icon: Plane, color: 'from-red-300 to-red-500', duration: 9, tilt: 50, startAngle: 180, radius: 90 },
+    { Icon: Car, color: 'from-rose-300 to-rose-500', duration: 11, tilt: 75, startAngle: 240, radius: 98 },
+    { Icon: Search, color: 'from-pink-300 to-red-400', duration: 7, tilt: 65, startAngle: 300, radius: 102 },
   ];
 
   return (
@@ -57,29 +118,22 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
             I am your Product Search Agent. I can find any insurance products in any country with AI-powered research.
           </motion.p>
 
-          {/* 3D Earth Globe with Orbiting Icons */}
-          <div className="relative w-64 h-64 mb-6">
+          {/* 3D Earth Globe with True 3D Orbiting Icons */}
+          <div className="relative w-64 h-64 mb-6" style={{ perspective: '600px' }}>
             {/* Outer glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-200/50 via-cyan-100/30 to-amber-100/30 rounded-full blur-2xl"></div>
 
-            {/* Orbit path */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, ease: "linear", repeat: Infinity }}
-              className="absolute inset-4 border border-gray-200/50 rounded-full border-dashed"
-            ></motion.div>
-
-            {/* 3D Earth Globe */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-36 h-36">
+            {/* 3D Earth Globe - Center */}
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="relative w-32 h-32">
                 {/* Globe base with 3D gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-300 via-cyan-400 to-blue-600 rounded-full shadow-2xl shadow-blue-400/50"></div>
                 {/* Continents overlay */}
                 <div className="absolute inset-0 rounded-full overflow-hidden opacity-70">
-                  <div className="absolute top-4 left-6 w-12 h-8 bg-green-500/60 rounded-full blur-sm"></div>
-                  <div className="absolute top-8 right-4 w-8 h-10 bg-green-600/50 rounded-full blur-sm"></div>
-                  <div className="absolute bottom-6 left-8 w-10 h-6 bg-green-500/50 rounded-full blur-sm"></div>
-                  <div className="absolute bottom-4 right-6 w-6 h-8 bg-green-600/40 rounded-full blur-sm"></div>
+                  <div className="absolute top-3 left-5 w-10 h-7 bg-green-500/60 rounded-full blur-sm"></div>
+                  <div className="absolute top-7 right-3 w-7 h-9 bg-green-600/50 rounded-full blur-sm"></div>
+                  <div className="absolute bottom-5 left-7 w-9 h-5 bg-green-500/50 rounded-full blur-sm"></div>
+                  <div className="absolute bottom-3 right-5 w-5 h-7 bg-green-600/40 rounded-full blur-sm"></div>
                 </div>
                 {/* Network lines effect */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
@@ -97,35 +151,22 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
                   <line x1="50" y1="65" x2="30" y2="35" stroke="#fbbf24" strokeWidth="0.5" opacity="0.5" />
                 </svg>
                 {/* Globe highlight */}
-                <div className="absolute top-2 left-4 w-8 h-8 bg-white/40 rounded-full blur-sm"></div>
+                <div className="absolute top-2 left-3 w-6 h-6 bg-white/40 rounded-full blur-sm"></div>
               </div>
             </div>
 
-            {/* Orbiting Insurance Icons */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 15, ease: "linear", repeat: Infinity }}
-              className="absolute inset-0"
-            >
-              {orbitIcons.map((item, index) => {
-                const angle = (index * 360) / orbitIcons.length;
-                const radius = 110;
-                const x = Math.cos((angle * Math.PI) / 180) * radius + 128 - 16;
-                const y = Math.sin((angle * Math.PI) / 180) * radius + 128 - 16;
-
-                return (
-                  <motion.div
-                    key={index}
-                    animate={{ rotate: -360 }} // Counter-rotate to keep icons upright
-                    transition={{ duration: 15, ease: "linear", repeat: Infinity }}
-                    className={`absolute w-8 h-8 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center shadow-lg`}
-                    style={{ left: x, top: y }}
-                  >
-                    <item.Icon className="w-4 h-4 text-white" />
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+            {/* 3D Orbiting Icons - Each with unique tilted orbit */}
+            {orbitIcons.map((item, index) => (
+              <OrbitingIcon
+                key={index}
+                Icon={item.Icon}
+                color={item.color}
+                orbitDuration={item.duration}
+                orbitTilt={item.tilt}
+                startAngle={item.startAngle}
+                radius={item.radius}
+              />
+            ))}
           </div>
         </div>
 
